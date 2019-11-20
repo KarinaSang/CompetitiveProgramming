@@ -1,0 +1,28 @@
+import java.util.*;
+public class SimonAndMarcy {
+	static int N, W;
+	static int [] value;
+	static int [] weight;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		N = sc.nextInt();
+		W = sc.nextInt();
+		value = new int [N];
+		weight = new int [N];
+		int [] cache = new int [W+1];
+		for(int i = 0; i < N; i++) {
+			value[i] = sc.nextInt();
+			weight[i] = sc.nextInt();
+		}
+		
+		for(int i = 0; i < N; i++) {
+			for(int w = W; w>=weight[i]; w-- ) {
+				cache[w] = Math.max(cache[w],value[i] + cache[w-weight[i]]);
+			}
+		}
+		
+		System.out.println(cache[W]);
+
+	}
+
+}
